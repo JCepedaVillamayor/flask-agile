@@ -1,10 +1,14 @@
 from app import create_app
 from app.models import db, User
 from flask_script import Manager, Shell
+from flask_migrate import Migrate, MigrateCommand
 import os
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 manager = Manager(app)
+migrate = Migrate(app, db)
+
+manager.add_command('db', MigrateCommand)
 
 @manager.shell
 def make_shell_context():
