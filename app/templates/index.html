@@ -1,8 +1,18 @@
 {% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
 {% block title %}Flask-Agile{% endblock %}
 
 {% block page_content %}
   <div class="page-header">
-    Hello from Flask-Agile!!
+    <h1>
+      Hello,
+      {% if name %}
+        {{ name }}
+      {% else %}
+        Stranger
+      {% endif %}!
+    </h1>
+    {{ wtf.quick_form(form) }}
   </div>
 {% endblock %}
